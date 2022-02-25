@@ -10,11 +10,18 @@ dependencies:
   - automake
   - m4
   - libtool
+  - gperf
 
 provision:
   - url:
       from: https://github.com/seccomp/libseccomp/archive/refs/tags/v{% version %}.tar.gz
       todir: "{% xbeeSrc %}"
 
-
 build:
+  - shell:
+      cmds:
+        - ./autogen.sh
+        - ./configure --prefix=/usr
+        - make
+        - make install DESTDIR={% xbeeOut %}
+      directory: "{% xbeeSrc %}/libseccomp-{% version %}"
