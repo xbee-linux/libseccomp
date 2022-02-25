@@ -1,0 +1,20 @@
+schema-version: 1.0
+
+type: builder
+
+in:
+  version: 2.5.3
+
+dependencies:
+  - autoconf
+  - automake
+  - m4
+  - libtool
+
+provision:
+  - url:
+      from: https://github.com/seccomp/libseccomp/archive/refs/tags/v{% version %}.tar.gz
+      todir: "{% xbeeSrc %}"
+
+
+build:
